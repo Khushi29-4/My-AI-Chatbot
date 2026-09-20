@@ -4146,51 +4146,155 @@ body.creative-theme .suggestions button {
         box-sizing: border-box;
     }
 }
+/* =========================================
+   MOBILE MESSAGE BAR — CLEAN LAYOUT
+   ========================================= */
+
 @media (max-width: 768px) {
 
+    .input-area {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
     #chat-form {
-        display: flex !important;
-        align-items: center !important;
-        gap: 4px !important;
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        gap: 4px;
+        padding: 6px 8px;
+
+        box-sizing: border-box;
+        overflow: hidden;
+        border-radius: 18px;
     }
 
+    /* Message writing area */
     #user-input {
-        flex: 1 1 auto !important;
-        min-width: 0 !important;
+        flex: 1 1 auto;
+        min-width: 0;
+        width: auto;
+
+        min-height: 40px;
+        max-height: 90px;
+
+        padding: 8px 4px;
+
+        box-sizing: border-box;
+        resize: none;
+
+        font-size: 14px;
+        line-height: 20px;
+
+        border: none;
+        outline: none;
     }
 
-    /* Keep language selector + mic + send grouped together */
-    #chat-form .language-selector,
-    #chat-form .language-select,
-    #chat-form .language-dropdown {
+    /* Keep existing buttons in their original order */
+    #chat-form button {
+        flex: 0 0 auto;
+        flex-shrink: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    /* Attach button */
+    #attach-btn {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+        min-height: 38px;
+    }
+
+    /* Language selector */
+    #chat-form select {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 82px;
+
+        margin: 0;
+        padding: 5px 2px;
+
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+
+    /* Microphone */
+    #chat-form .voice-btn,
+    #chat-form #voice-btn,
+    #chat-form .mic-btn {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+        min-height: 38px;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Send */
+    #send-btn {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+        min-height: 38px;
+
+        margin: 0 !important;
+        padding: 0;
+    }
+
+    /* =========================================
+       MODE SELECTOR
+       Show ONLY the dropdown arrow on mobile
+       ========================================= */
+
+    .mode-selector,
+    .mode-select,
+    #mode-selector,
+    #mode-select {
+        width: 22px !important;
+        min-width: 22px !important;
+        max-width: 22px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        overflow: hidden !important;
+        white-space: nowrap !important;
+
+        flex: 0 0 22px !important;
+    }
+
+    .mode-selector select,
+    .mode-select select,
+    #mode-selector select,
+    #mode-select select {
+        width: 22px !important;
+        min-width: 22px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        font-size: 0 !important;
+
+        appearance: auto !important;
+    }
+
+    /* Tight grouping of language + mic + send */
+    #chat-form select {
         margin-left: 0 !important;
         margin-right: 0 !important;
-        flex-shrink: 0 !important;
     }
 
     #chat-form .voice-btn,
     #chat-form #voice-btn,
     #chat-form .mic-btn,
-    #chat-form #send-btn {
-        flex-shrink: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    /* If language selector is a select element */
-    #chat-form select {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        flex-shrink: 0 !important;
-    }
-
-    /* Keep the right-side controls tightly together */
-    #chat-form select + button,
-    #chat-form select ~ button {
-        margin-left: 0 !important;
-    }
-
     #send-btn {
         margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
