@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My AI Chatbot</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button class="close-sidebar-btn" id="close-sidebar-btn">
+                ✕
+            </button>
+
+            <div class="logo">
+                <div class="logo-icon">✦</div>
+                <div>
+                    <h2>My AI</h2>
+                    <span>Personal Assistant</span>
+                </div>
+            </div>
+
+            <div class="new-chat-wrapper">
+
+                <button class="new-chat" id="new-chat-btn">
+                    ＋ New Chat
+                </button>
+
+                <select id="chat-category" class="chat-category">
+                    <option value="general">💬 General</option>
+                    <option value="projects">💻 Projects</option>
+                    <option value="study">📚 Study</option>
+                    <option value="interview">🎯 Interview</option>
+                    <option value="personal">📝 Personal</option>
+                </select>
+
+            </div>
+            <button class="learning-journey-btn" id="learning-journey-btn">
+                🧠 Learning Journey
+            </button>
+            <button class="pinned-messages-btn" id="pinned-messages-btn">
+                📌 Pinned Messages
+            </button>
+            <button class="quick-actions-btn" id="quick-actions-btn">
+                ⚡ Quick Actions
+            </button>
+            <button class="prompt-library-btn" id="prompt-library-btn">
+    📝 Prompt Library
+</button>
+            <div class="quick-actions-menu" id="quick-actions-menu">
+
+                <button type="button" data-prompt="Explain this in simple language with an example.">
+                    💡 Explain Simply
+                </button>
+
+                <button type="button" data-prompt="Help me understand and fix this code. Explain the solution clearly.">
+                    💻 Code Help
+                </button>
+
+                <button type="button" data-prompt="Summarize the following text into the most important points.">
+                    📝 Summarize
+                </button>
+
+                <button type="button"
+                    data-prompt="Improve the grammar, clarity, and wording of the following text while keeping its original meaning.">
+                    ✍️ Improve Writing
+                </button>
+
+                <button type="button"
+                    data-prompt="Act as an interviewer. Ask me one interview question at a time and wait for my answer.">
+                    🎯 Interview Prep
+                </button>
+
+                <button type="button"
+                    data-prompt="Act as my study assistant. Explain the topic clearly, give examples, and then ask me a few questions to test my understanding.">
+                    📚 Study Mode
+                </button>
+
+                <button type="button"
+                    data-prompt="Translate the following text accurately while preserving its meaning and tone.">
+                    🌐 Translate
+                </button>
+
+                <button type="button"
+                    data-prompt="Help me brainstorm creative and practical ideas for the following topic.">
+                    🧠 Brainstorm
+                </button>
+
+            </div>
+            <div class="prompt-library" id="prompt-library">
+    <div class="prompt-library-header">
+        <h3>📝 Prompt Library</h3>
+        <button id="close-prompt-library">✕</button>
+    </div>
+
+    <div class="prompt-library-add">
+        <input
+            type="text"
+            id="prompt-library-input"
+            placeholder="Enter a prompt..."
+        >
+        <button id="save-prompt-btn">＋</button>
+    </div>
+
+    <div id="prompt-list"></div>
+</div>
+            <div class="chat-history">
+
+                <p class="history-title">Recent Chats</p>
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">🔍</span>
+
+                    <input type="text" id="chat-search" class="chat-search" placeholder="Search chats..."
+                        autocomplete="off">
+
+                </div>
+
+                <div class="history-filter">
+
+                    <button class="history-filter-btn active" id="all-chats-btn">
+                        All chats
+                    </button>
+
+                    <button class="history-filter-btn" id="favorite-chats-btn">
+                        Favorites
+                    </button>
+
+                </div>
+
+                <div class="category-filter">
+
+                    <select id="category-filter-select">
+                        <option value="all">All categories</option>
+                        <option value="general">💬 General</option>
+                        <option value="projects">💻 Projects</option>
+                        <option value="study">📚 Study</option>
+                        <option value="interview">🎯 Interview</option>
+                        <option value="personal">📝 Personal</option>
+                    </select>
+
+                </div>
+
+                <div id="history-list"></div>
+
+            </div>
+
+            <div class="sidebar-bottom">
+                <p>AI Assistant</p>
+                <small>Powered by Gemini</small>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Chat -->
+        <section class="chat-container">
+
+            <!-- Header -->
+            <header class="chat-header">
+                <button class="mobile-menu-btn" id="mobile-menu-btn" title="Open chat history">
+                    ☰
+                </button>
+                <div class="assistant-info">
+
+
+
+                    <div>
+                        <h1>My AI Assistant</h1>
+
+                        <div class="status">
+                            <span class="status-dot"></span>
+                            Online
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="header-actions">
+
+                    <div class="message-search">
+
+                        <input type="text" id="message-search-input" placeholder="Search messages..."
+                            autocomplete="off">
+
+                        <button type="button" id="message-search-btn" title="Search messages">
+                            🔍
+                        </button>
+
+                    </div>
+
+                    <button class="export-btn" id="export-btn" title="Export chat">
+                        📥
+                    </button>
+                    <button class="summary-btn" id="summary-btn" title="Summarize chat">
+    📑
+</button>
+                    <div class="export-menu" id="export-menu">
+                        <button type="button" id="export-markdown">📄 Markdown</button>
+                        <button type="button" id="export-txt">📝 TXT</button>
+                        <button type="button" id="export-print">🖨️ Print / PDF</button>
+                    </div>
+                    <button class="clear-btn" title="Clear chat">
+                        🗑
+                    </button>
+                    <div class="theme-selector">
+
+    <button id="theme-btn" class="theme-btn">
+        🌙
+    </button>
+
+    <div id="theme-menu" class="theme-menu">
+
+        <button data-theme="light">
+            ☀️ Light
+        </button>
+
+        <button data-theme="dark">
+            🌙 Dark
+        </button>
+
+        <button data-theme="study">
+            📚 Study
+        </button>
+
+        <button data-theme="code">
+            💻 Code
+        </button>
+
+        <button data-theme="interview">
+            🎤 Interview
+        </button>
+
+        <button data-theme="creative">
+            🎨 Creative
+        </button>
+
+    </div>
+
+</div>
+                </div>
+
+            </header>
+
+
+            <!-- Custom Instructions -->
+            <div class="instructions-box">
+
+                <label for="instructions">
+                    ⚙ Custom Instructions
+                </label>
+
+                <textarea id="instructions" placeholder="Tell your AI how you want it to behave..."></textarea>
+
+            </div>
+
+
+            <!-- Messages -->
+            <main id="chat-box">
+
+                <div class="welcome">
+
+                    <div class="welcome-icon">
+                        ✦
+                    </div>
+
+                    <h2>How can I help you today?</h2>
+
+                    <p>
+                        Ask questions, solve problems, write code,
+                        or upload an image or PDF.
+                    </p>
+
+                    <div class="suggestions">
+
+                        <button>💡 Explain something</button>
+
+                        <button>💻 Help me code</button>
+
+                        <button>📚 Solve a question</button>
+
+                        <button>🖼️ Analyze an image</button>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+<div id="follow-up-suggestions"></div>
+            <!-- Input -->
+            <div class="input-area">
+
+                <div id="file-preview-container"></div>
+
+                <form id="chat-form">
+                    <div class="attach-wrapper">
+
+                        <button type="button" class="attach-btn" id="attach-btn" title="Attach">
+                            📎
+                        </button>
+
+                        <div class="attach-menu" id="attach-menu">
+
+                            <button type="button" id="image-option">
+                                🖼️
+                                <span>Select Image</span>
+                            </button>
+
+                            <button type="button" id="document-option">
+                                📄
+                                <span>Select PDF / Document</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <input type="file" id="image-input" accept="image/*" hidden>
+
+                    <input type="file" id="document-input" accept=".pdf,.doc,.docx,.txt" hidden>
+                    <div class="ai-mode">
+                        <label for="ai-mode-select">Mode</label>
+
+                        <select id="ai-mode-select">
+                            <option value="normal">💬 Normal</option>
+                            <option value="study">📚 Study</option>
+                            <option value="code">💻 Code</option>
+                            <option value="interview">🎯 Interview</option>
+                            <option value="creative">✨ Creative</option>
+                        </select>
+                    </div>
+
+                    <textarea id="user-input" placeholder="Message My AI..." rows="1"></textarea>
+                    <select id="voice-language" title="Voice language">
+                        <option value="en-IN">🇬🇧 English</option>
+                        <option value="hi-IN">🇮🇳 Hindi</option>
+                    </select>
+                    <button type="button" id="voice-btn" title="Voice input">🎙️</button>
+                    <div id="message-count">0 characters</div>
+
+                    <button type="submit" class="send-btn" title="Send">
+                        ➤
+                    </button>
+
+                </form>
+
+                <p class="input-hint">
+                    My AI can make mistakes. Check important information.
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
